@@ -8,11 +8,12 @@
 
 using namespace std;
 
-int lin, col, i, j, tons, *p;
-int m[404][600]; //fazer alocação de memoria ******
+int lin, col, i, j, tons;
+int m[1000][1000]; //fazer alocação de memoria *****
 string tipo;
+char line[80];
 
-int leMatriz(char *nome) {
+int leMatriz(const char *nome) {
     ifstream myfile(nome);
     if (myfile.is_open()) {
         while (!myfile.eof()) {
@@ -22,8 +23,7 @@ int leMatriz(char *nome) {
                 cout << "Erro. Tipo errado.";
                 return 1;
             }
-            //pular linhas de comentário
-
+            
             //ler a matriz
             myfile >> col;
             cout << "    Colunas: " << col;
@@ -36,65 +36,140 @@ int leMatriz(char *nome) {
                 cout << "Não foi possível ler o arquivo!" << endl;
                 return -1;
             }
-
             
             int *p = &m[0][0];
             for (int i = 0; i < lin; i++) {
                 for (int j = 0; j < col; j++) {
                     myfile >> *p;
                     p++;
-                    //cout << "  mat[" << i << "][" << j << "]: " << m[i][j];
                 }
-                //cout << endl;
             }
-            //cout << endl;
-
         }
         myfile.close();
     } else
         cout << "Não foi possível ler o arquivo." << endl;
-    return m[lin][col];
+    return 0;
 }
 
-void escreveMatriz(char *nome){
+void escreveMatriz(const char *nome) {
     ofstream myfile2;
     myfile2.open(nome);
-    if(myfile2.is_open()){
+    if (myfile2.is_open()) {
         myfile2 << "P2" << endl;
         //myfile2 << "#Create by Gabriel..." << endl;
-        myfile2 << col << " " << lin <<endl;
+        myfile2 << col << " " << lin << endl;
 
-        for(i=0; i<lin; i++){
-            for(j=0; j<col; j++){
+        for (i = 0; i < lin; i++) {
+            for (j = 0; j < col; j++) {
                 myfile2 << m[i][j] << " ";
             }
             myfile2 << endl;
         }
         myfile2.close();
 
-    }
-    else
+    } else
         cout << "Não foi possível escrever no arquivo" << endl;
- 
+
 }
 
-void inverteMatriz(char *nome, char *nome1){
+void inverteMatriz(const char *nome,const char *nome1) {
     leMatriz(nome);
     ofstream myfile;
     myfile.open(nome1);
-    if (myfile.is_open()){
+    if (myfile.is_open()) {
         myfile << "P2" << endl;
         myfile << col << " " << lin << endl;
         myfile << tons << endl;
-        for( i=0; i<lin; i++){
-            for( j=0; j<col; j++){
-                myfile << tons - m[i][j] << " ";
+        int *p = &m[0][0];
+        for (i = 0; i < lin; i++) {
+            for (j = 0; j < col; j++) {
+                myfile << tons - *p << " ";
+                p++;
             }
             myfile << endl;
         }
         myfile.close();
-    }
-    else
+    } else
         cout << "Não foi posssível inverter a matriz!";
- 
+
+}
+
+void giraDireita(const char *nome,const char *nome1) {
+    int *p, *p1, *q, *r;
+    leMatriz(nome);
+    int d[col][lin];
+    int tam = lin*col;
+    ofstream myfile;
+    myfile.open(nome1);
+    if (myfile.is_open()) {
+        myfile << "P2" << endl;
+        myfile << lin << " " << col << endl;
+        myfile << tons << endl;
+
+        //girar a matriz 
+        p1 = &d[0][0];
+        for (p = &m[0][0]+(tam - (col)); p<&m[0][0] + tam; p++) {
+            for (q = p; q >= &m[0][0]; q -= col) {
+                *p1 = *q;
+                p1++;
+            }
+        }
+        //escrever a matriz no arquivo
+        r = &d[0][0];
+        for (i = 0; i < col; i++) {
+            for (j = 0; j < lin; j++) {
+                myfile << *r << " ";
+                r++;
+            }
+            myfile << endl;
+        }
+        myfile.close();
+    } else
+        cout << "Não foi posssível girar a matriz!";
+
+}
+
+void giraEsquerda(const char *nome,const char *nome1) {
+    int *p, *p1, *q, *r;
+    leMatriz(nome);
+    int d[col][lin];
+    int tam = lin*col;
+    ofstream myfile;
+    myfile.open(nome1);
+    if (myfile.is_open()) {
+        myfile << "P2" << endl;
+        myfile << lin << " " << col << endl;
+        myfile << tons << endl;
+
+        //girar a matriz para esquerda** falta terminar
+        p1 = &d[0][0];
+        for (p = &m[0][0]+tam; p>&m[0][0] + (tam-lin); p--) {
+            i--;
+            for (i=col-1, q = &m[0][0]+i; q <= p; q += lin) {
+                *p1 = *q;
+                p1++;  
+            }
+            
+        }
+        //escrever a matriz no arquivo
+        r = &d[0][0];
+        for (i = 0; i < col; i++) {
+            for (j = 0; j < lin; j++) {
+                myfile << *r << " ";
+                r++;
+            }
+            myfile << endl;
+        }
+        myfile.close();
+    } else
+        cout << "Não foi posssível girar a matriz!";
+
+}
+
+void inverteVertical() {
+
+}
+
+void inverteHorizontal() {
+
 }
