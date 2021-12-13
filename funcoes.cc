@@ -9,7 +9,7 @@
 using namespace std;
 
 int lin, col, i, j, tons;
-int m[1000][1000]; //fazer alocação de memoria *****
+int m[1000][1000]; 
 string tipo;
 char line[80];
 
