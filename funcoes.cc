@@ -130,7 +130,7 @@ void giraDireita(const char *nome,const char *nome1) {
 }
 
 void giraEsquerda(const char *nome,const char *nome1) {
-    int *p, *p1, *q, *r;
+    int *p, *p1, *q, *aux, *r;
     leMatriz(nome);
     int d[col][lin];
     int tam = lin*col;
@@ -143,14 +143,16 @@ void giraEsquerda(const char *nome,const char *nome1) {
 
         //girar a matriz para esquerda** falta terminar
         p1 = &d[0][0];
-        for (p = &m[0][0]+tam; p>&m[0][0] + (tam-lin); p--) {
-            i--;
-            for (i=col-1, q = &m[0][0]+i; q <= p; q += lin) {
+        aux = &m[0][0]+(col-1);
+        for ( p = &m[0][0]+(tam-1); p>=&m[0][0] + (tam-col); ) {
+            for ( q=aux; q <= p ; q += col ) {
                 *p1 = *q;
                 p1++;  
             }
-            
+            p--;
+            aux--;  
         }
+        
         //escrever a matriz no arquivo
         r = &d[0][0];
         for (i = 0; i < col; i++) {
@@ -160,6 +162,7 @@ void giraEsquerda(const char *nome,const char *nome1) {
             }
             myfile << endl;
         }
+        
         myfile.close();
     } else
         cout << "Não foi posssível girar a matriz!";
