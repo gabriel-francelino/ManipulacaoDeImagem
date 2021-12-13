@@ -106,7 +106,7 @@ void giraDireita(const char *nome,const char *nome1) {
         myfile << lin << " " << col << endl;
         myfile << tons << endl;
 
-        //girar a matriz 
+        //girar a matriz para direita
         p1 = &d[0][0];
         for (p = &m[0][0]+(tam - (col)); p<&m[0][0] + tam; p++) {
             for (q = p; q >= &m[0][0]; q -= col) {
@@ -141,15 +141,14 @@ void giraEsquerda(const char *nome,const char *nome1) {
         myfile << lin << " " << col << endl;
         myfile << tons << endl;
 
-        //girar a matriz para esquerda** falta terminar
+        //girar a matriz para esquerda
         p1 = &d[0][0];
         aux = &m[0][0]+(col-1);
-        for ( p = &m[0][0]+(tam-1); p>=&m[0][0] + (tam-col); ) {
+        for ( p = &m[0][0]+(tam-1); p>=&m[0][0] + (tam-col); p--) {
             for ( q=aux; q <= p ; q += col ) {
                 *p1 = *q;
                 p1++;  
             }
-            p--;
             aux--;  
         }
         
