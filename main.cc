@@ -63,13 +63,18 @@ int leMatriz(const char *nome) {
 
 int main(int argc, char**argv) {
     int comando;
+    //char nome[20];
+    //cout << "Digite o nome do arquivo a ser lido: (exemplo.pgm)" << endl;
+    //cin >> nome;
     leMatriz("stanford1.pgm");
     //leMatriz("teste.txt");
     
     do {
         sleep(1);
         interface();
+        cout << "COMANDO: ";
         cin >> comando;
+        cout << endl;
 
         switch (comando) {
             case 1:
@@ -82,21 +87,24 @@ int main(int argc, char**argv) {
                 giraEsquerda( lin, col, tons, m);
                 break;
             case 4:
-                cout << "Teste1";
+                inverteVertical( lin, col, tons, m);
                 break;
             case 5:
-                cout << "Teste2";
+                inverteHorizontal( lin, col, tons, m);
                 break;
             case 6:
-                cout << "Teste3";
+                cout << "Saturday";
                 break;
             case 0:
-                cout << "   FIM DE PROGRAMA!    " << endl;
-                return 0;
+                cout << "FIM DE PROGRAMA!    " << endl;
+                //return 0;
                 break;
         }
+        if(comando>6){
+            cout << "OPIÇÃO INVÁLIDA     " << endl;
+        }else
+            cout << "COMANDO " << comando << " EXECUTADO COM SUCESSO!  " << endl;
         
-        cout << "   EXECUTADO COM SUCESSO!  " << endl;
     } while (comando != 0);
     
     return 0;
