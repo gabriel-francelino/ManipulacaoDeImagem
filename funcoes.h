@@ -15,9 +15,9 @@
 
 int leMatriz(const char *nome);
 void escreveMatriz(const char *nome);
-void inverteMatriz(const char *nome,const char *nome1);
-void giraDireita (const char *nome,const char *nome1);
-void giraEsquerda(const char *nome,const char *nome1);
+void negativo( int lin, int col, int tons, int m[1000][1000]);
+void giraDireita(int lin, int col, int tons, int m[1000][1000]);
+void giraEsquerda(int lin, int col, int tons, int m[1000][1000]);
 
 #endif /* FUNCOES_H */
 
