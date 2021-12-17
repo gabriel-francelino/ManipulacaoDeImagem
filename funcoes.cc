@@ -8,81 +8,18 @@
 
 using namespace std;
 
-int lin, col, i, j, tons;
-int m[1000][1000]; 
-string tipo;
-char line[80];
+int i, j;
 
-int leMatriz(const char *nome) {
-    ifstream myfile(nome);
-    if (myfile.is_open()) {
-        while (!myfile.eof()) {
-            //ler o tipo
-            myfile >> tipo;
-            if (tipo != "P2") {
-                cout << "Erro. Tipo errado.";
-                return 1;
-            }
-            
-            //ler a matriz
-            myfile >> col;
-            cout << "    Colunas: " << col;
-            myfile >> lin;
-            cout << "    Linhas: " << lin;
-            cout << endl;
-            myfile >> tons;
-
-            if (lin < 1 || col < 1) {
-                cout << "Não foi possível ler o arquivo!" << endl;
-                return -1;
-            }
-            
-            int *p = &m[0][0];
-            for (int i = 0; i < lin; i++) {
-                for (int j = 0; j < col; j++) {
-                    myfile >> *p;
-                    p++;
-                }
-            }
-        }
-        myfile.close();
-    } else
-        cout << "Não foi possível ler o arquivo." << endl;
-    return 0;
-}
-
-void escreveMatriz(const char *nome) {
-    ofstream myfile2;
-    myfile2.open(nome);
-    if (myfile2.is_open()) {
-        myfile2 << "P2" << endl;
-        //myfile2 << "#Create by Gabriel..." << endl;
-        myfile2 << col << " " << lin << endl;
-
-        for (i = 0; i < lin; i++) {
-            for (j = 0; j < col; j++) {
-                myfile2 << m[i][j] << " ";
-            }
-            myfile2 << endl;
-        }
-        myfile2.close();
-
-    } else
-        cout << "Não foi possível escrever no arquivo" << endl;
-
-}
-
-void inverteMatriz(const char *nome,const char *nome1) {
-    leMatriz(nome);
+void negativo( int lin, int col, int tons, int m[1000][1000]) {
     ofstream myfile;
-    myfile.open(nome1);
+    myfile.open("teste3.pgm");
     if (myfile.is_open()) {
         myfile << "P2" << endl;
         myfile << col << " " << lin << endl;
         myfile << tons << endl;
         int *p = &m[0][0];
-        for (i = 0; i < lin; i++) {
-            for (j = 0; j < col; j++) {
+        for (int i = 0; i < lin; i++) {
+            for (int j = 0; j < col; j++) {
                 myfile << tons - *p << " ";
                 p++;
             }
@@ -94,13 +31,12 @@ void inverteMatriz(const char *nome,const char *nome1) {
 
 }
 
-void giraDireita(const char *nome,const char *nome1) {
+void giraDireita(int lin, int col, int tons, int m[1000][1000]) {
     int *p, *p1, *q, *r;
-    leMatriz(nome);
     int d[col][lin];
     int tam = lin*col;
     ofstream myfile;
-    myfile.open(nome1);
+    myfile.open("teste3.pgm");
     if (myfile.is_open()) {
         myfile << "P2" << endl;
         myfile << lin << " " << col << endl;
@@ -129,13 +65,12 @@ void giraDireita(const char *nome,const char *nome1) {
 
 }
 
-void giraEsquerda(const char *nome,const char *nome1) {
+void giraEsquerda(int lin, int col, int tons, int m[1000][1000]) {
     int *p, *p1, *q, *aux, *r;
-    leMatriz(nome);
     int d[col][lin];
     int tam = lin*col;
     ofstream myfile;
-    myfile.open(nome1);
+    myfile.open("teste3.pgm");
     if (myfile.is_open()) {
         myfile << "P2" << endl;
         myfile << lin << " " << col << endl;
@@ -174,4 +109,8 @@ void inverteVertical() {
 
 void inverteHorizontal() {
 
+}
+
+void escureceBordas(){
+    
 }
