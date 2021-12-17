@@ -7,7 +7,7 @@
  * File:   funcoes.h
  * Author: anaca
  *
- * Created on 3 de Dezembro de 2021, 13:41
+ * Created on 17 de Dezembro de 2021, 10:55
  */
 
 #ifndef FUNCOES_H
@@ -18,6 +18,8 @@ void escreveMatriz(const char *nome);
 void negativo( int lin, int col, int tons, int m[1000][1000]);
 void giraDireita(int lin, int col, int tons, int m[1000][1000]);
 void giraEsquerda(int lin, int col, int tons, int m[1000][1000]);
+void inverteVertical(int lin, int col, int tons, int m[1000][1000]);
+void inverteHorizontal(int lin, int col, int tons, int m[1000][1000]);
 
 #endif /* FUNCOES_H */
 
