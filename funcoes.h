@@ -20,6 +20,7 @@ void giraDireita(int lin, int col, int tons, int m[1000][1000]);
 void giraEsquerda(int lin, int col, int tons, int m[1000][1000]);
 void inverteVertical(int lin, int col, int tons, int m[1000][1000]);
 void inverteHorizontal(int lin, int col, int tons, int m[1000][1000]);
+void escureceBordas(int lin, int col, int tons, int m[1000][1000]);
 
 #endif /* FUNCOES_H */
 
