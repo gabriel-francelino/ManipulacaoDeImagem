@@ -10,7 +10,8 @@ using namespace std;
 
 /*  lin = linhas da mtriz
     col = colunas da matriz
-    tons = tons de cinza da imagem*/
+    tons = tons de cinza da imagem
+*/
 int lin, col, tons;
 int m[1000][1000], *p;
 string tipo;
@@ -70,12 +71,13 @@ int leMatriz(const char *nome) {
 
 int main(int argc, char**argv) {
     int comando;
-    //char nome[50];
-    //cout << "Digite o nome do arquivo a ser lido: (exemplo.pgm)" << endl;
-    //cin >> nome;
-    //leMatriz(nome);
+    /* Método de leitura do arquivo pelo usuário através da interface(caso queira testar).
+    char nome[50];
+    cout << "Digite o nome do arquivo a ser lido: (exemplo.pgm)" << endl;
+    cin >> nome;
+    leMatriz(nome);
+    */
     leMatriz("stanford1.pgm");
-    //leMatriz("teste.txt");
     
     
     //menu
